@@ -40,21 +40,21 @@ public class TapeEquilibrium {
 
     private static void smartSolution(int[] a) {
         int iterations = 0;
-        int total = 0;
+
+        int sum = 0;
         for (int i = 0; i < a.length; i++) {
             iterations++;
-            total += a[i];
+            sum += a[i];
         }
+
+        int left = 0;
+        int right;
         int minDiff = Integer.MAX_VALUE;
-        int curr = 0;
         for (int i = 0; i < a.length - 1; i++) {
             iterations++;
-            curr += a[i];
-            int rest = total - curr;
-            int diff = Math.abs(rest - curr);
-            if (diff < minDiff) {
-                minDiff = diff;
-            }
+            left += a[i];
+            right = sum - left;
+            minDiff = Math.min(minDiff, Math.abs(right - left));
         }
         System.out.println("smart solution: " + iterations + " iterations; result = " + minDiff);
     }
